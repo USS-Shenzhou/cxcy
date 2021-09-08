@@ -30,7 +30,7 @@ public class RadarPanel extends JPanel {
         graphics2D.setPaint(new Color(0x0F171C));
         graphics2D.fillOval(0, 0, getWidth(), getHeight());
 
-        this.drawMultiArcs(graphics2D, new Color(0x151f26), 8, (int) (getWidth() * 0.15), (int) (getWidth() * 0.5), (int) (getHeight() * 0.5));
+        this.drawMultiArcs(graphics2D, new Color(0x151F26), 8, (int) (getWidth() * 0.15), (int) (getWidth() * 0.5), (int) (getHeight() * 0.5));
         this.drawMultiArcs(graphics2D, new Color(0x151f26), 8, (int) (getWidth() * 0.30), (int) (getWidth() * 0.5), (int) (getHeight() * 0.5));
         this.drawMultiArcs(graphics2D, new Color(0x151f26), 8, (int) (getWidth() * 0.45), (int) (getWidth() * 0.5), (int) (getHeight() * 0.5));
 
