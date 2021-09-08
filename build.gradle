@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'edu.sc.seis.launch4j' version '2.5.0'
+}
+
+version '0.1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    //testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+jar {
+    manifest {
+        attributes(
+                //'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'cn.ussshenzhou.cxcy.Cxcy'
+        )
+    }
+}
+/*test {
+    useJUnitPlatform()
+}*/
+
+tasks.withType(JavaCompile){
+    options.encoding = "UTF-8"
+}
+launch4j {
+    headerType="gui"
+    mainClassName = 'cn.ussshenzhou.cxcy.Cxcy'
+    //outfile = "Burj2.exe"
+    //icon = "${projectDir}/src/main/resources/images/icon.ico"
+    jar = '../libs/Master_Mode_System_Config-all-1.0-SNAPSHOT.jar'
+}
