@@ -50,8 +50,8 @@ public class RadarPanel extends JPanel {
     }
 
     private void drawTarget(Graphics2D graphics2D) {
-        Color color = new Color();
-        graphics2D.setPaint();
+        //Color color = new Color();
+        //graphics2D.setPaint();
     }
 
     public void setPoint(int x, int y, int z) {
