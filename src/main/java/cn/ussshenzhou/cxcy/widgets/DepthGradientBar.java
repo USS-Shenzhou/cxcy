@@ -1,10 +1,9 @@
 package cn.ussshenzhou.cxcy.widgets;
 
-import cn.ussshenzhou.cxcy.utils.ColorControl;
+import cn.ussshenzhou.cxcy.utils.ColorManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.color.ColorSpace;
 
 /**
  * @author USS_Shenzhou
@@ -22,7 +21,7 @@ public class DepthGradientBar extends JPanel {
         Graphics2D graphics2D = (Graphics2D) g;
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        GradientPaint paint = new GradientPaint(0, 0, ColorControl.MIN_DEPTH, width, height, ColorControl.MAX_DEPTH);
+        GradientPaint paint = new GradientPaint(0, 0, ColorManager.MIN_DEPTH_COLOR, width, height, ColorManager.MAX_DEPTH_COLOR);
 
         graphics2D.setPaint(paint);
         g.fillRect(0, 0, width, height);

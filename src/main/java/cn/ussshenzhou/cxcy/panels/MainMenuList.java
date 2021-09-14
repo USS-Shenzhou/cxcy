@@ -13,6 +13,7 @@ public class MainMenuList extends JList<String> {
         DefaultListModel<String> listModel = new DefaultListModel<>();
         listModel.addElement("实时扫描");
         listModel.addElement("离线数据");
+        listModel.addElement("设置");
 
         this.setModel(listModel);
         this.setCellRenderer(new MainMenuListRenderer());

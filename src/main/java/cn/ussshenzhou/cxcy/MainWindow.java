@@ -1,7 +1,9 @@
 package cn.ussshenzhou.cxcy;
 
+import cn.ussshenzhou.cxcy.communicate.CommManager;
 import cn.ussshenzhou.cxcy.panels.MainMenuList;
 import cn.ussshenzhou.cxcy.panels.MainViewPanel;
+import cn.ussshenzhou.cxcy.utils.LogManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,26 +25,28 @@ public class MainWindow extends JFrame {
 
         this.initListener();
 
-        rootContainer.add(mainMenuList,BorderLayout.LINE_START);
-        rootContainer.add(mainViewPanel,BorderLayout.CENTER);
+        rootContainer.add(mainMenuList, BorderLayout.LINE_START);
+        rootContainer.add(mainViewPanel, BorderLayout.CENTER);
         mainMenuList.setSelectedIndex(0);
         mainViewPanel.setShow(0);
+
+        Cxcy.dataThread.add(CommManager::init);
     }
 
-    private void initListener(){
+    private void initListener() {
 
         mainMenuList.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 int i = mainMenuList.locationToIndex(e.getPoint());
-                if (i>=0){
+                if (i >= 0) {
                     mainViewPanel.setShow(i);
                 }
             }
         });
     }
 
-    public MainViewPanel getMainViewPanel(){
-        return  this.mainViewPanel;
+    public MainViewPanel getMainViewPanel() {
+        return this.mainViewPanel;
     }
 }

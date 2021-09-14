@@ -1,0 +1,3 @@
+[10:26:44] [Render Thread/INFO] [cn.ussshenzhou.cxcy.utils.LogManager/init]: start!
+[10:26:44] [Data Thread/INFO] [cn.ussshenzhou.cxcy.communicate.CommManager/seekPorts]: available ports:[COM1, COM2, COM3, COM5]
+[10:26:44] [Data Thread/INFO] [cn.ussshenzhou.cxcy.communicate.CommManager/setPort]: port //./COM1 opened with baud rate 9600

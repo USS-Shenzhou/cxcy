@@ -1,0 +1,4 @@
+[8:15:37] [cn.ussshenzhou.cxcy.utils.LogManager/INFO]: start!
+[8:15:38] [cn.ussshenzhou.cxcy.communicate.CommManager/INFO]: available ports:[COM1, COM5]
+[8:15:38] [cn.ussshenzhou.cxcy.communicate.CommManager/INFO]: available ports:[COM1, COM5, COM1, COM5]
+[8:16:11] [cn.ussshenzhou.cxcy.communicate.CommManager/INFO]: available ports:[COM1, COM5]

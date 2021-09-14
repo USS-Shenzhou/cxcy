@@ -12,27 +12,73 @@ repositories {
 dependencies {
     //testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     //testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    // https://mvnrepository.com/artifact/org.rxtx/rxtx
+    implementation group: 'org.rxtx', name: 'rxtx', version: '2.1.7'
+    // https://mvnrepository.com/artifact/org.jogamp.jogl/jogl-all
+    implementation group: 'org.jogamp.jogl', name: 'jogl-all-main', version: '2.3.2'
+    // https://mvnrepository.com/artifact/org.jogamp.gluegen/gluegen-rt-main
+    implementation group: 'org.jogamp.gluegen', name: 'gluegen-rt-main', version: '2.3.2'
+
+    implementation 'org.jogamp.jogl:nativewindow-main:2.3.2'
+    // https://mvnrepository.com/artifact/com.ardor3d/ardor3d-core
+    implementation group: 'com.ardor3d', name: 'ardor3d-core', version: '1.0.0'
+    // https://mvnrepository.com/artifact/com.ardor3d/ardor3d-jogl
+    implementation group: 'com.ardor3d', name: 'ardor3d-jogl', version: '1.0.0'
+
+    // https://mvnrepository.com/artifact/com.ardor3d/ardor3d-awt
+    implementation group: 'com.ardor3d', name: 'ardor3d-awt', version: '1.0.0'
+    // https://mvnrepository.com/artifact/com.ardor3d/ardor3d-swt
+    //implementation group: 'com.ardor3d', name: 'ardor3d-swt', version: '1.0.0'
+
+    // https://mvnrepository.com/artifact/org.eclipse.platform/org.eclipse.swt
+    implementation group: 'org.eclipse.platform', name: 'org.eclipse.swt', version: '3.106.3'
+
+
+
+
+
+
 }
 
 jar {
     manifest {
         attributes(
-                //'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
                 'Main-Class': 'cn.ussshenzhou.cxcy.Cxcy'
         )
     }
+    //from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    from { configurations.implementation.collect { it.isDirectory() ? it : zipTree(it) } }
+
 }
 /*test {
     useJUnitPlatform()
 }*/
 
-tasks.withType(JavaCompile){
+tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
-launch4j {
-    headerType="gui"
+
+createExe {
+    headerType = "gui"
     mainClassName = 'cn.ussshenzhou.cxcy.Cxcy'
     //outfile = "Burj2.exe"
     //icon = "${projectDir}/src/main/resources/images/icon.ico"
-    jar = '../libs/Master_Mode_System_Config-all-1.0-SNAPSHOT.jar'
+    jar = 'cxcy-0.1.0.jar'
+    jreRuntimeBits = '32'
+}
+configurations.all {
+    resolutionStrategy {
+        dependencySubstitution {
+            //def os = System.getProperty("os.name").toLowerCase()
+            //if (os.contains("windows")) {
+                substitute module('org.eclipse.platform:org.eclipse.swt.${osgi.platform}') with module("org.eclipse.platform:org.eclipse.swt.win32.win32.x86_64:3.106.3")
+            //}
+            //else if (os.contains("linux")) {
+            //    substitute module('org.eclipse.platform:org.eclipse.swt.${osgi.platform}') with module("org.eclipse.platform:org.eclipse.swt.gtk.linux.x86_64:3.106.3")
+            //}
+            //else if (os.contains("mac")) {
+            //    substitute module('org.eclipse.platform:org.eclipse.swt.${osgi.platform}') with module("org.eclipse.platform:org.eclipse.swt.cocoa.macosx.x86_64:3.106.3")
+            //}
+        }
+    }
 }
