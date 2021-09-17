@@ -4,6 +4,7 @@ import cn.ussshenzhou.cxcy.communicate.DataThread;
 import cn.ussshenzhou.cxcy.utils.LogManager;
 
 import javax.swing.*;
+import javax.swing.plaf.synth.SynthLookAndFeel;
 import java.awt.*;
 
 /**
@@ -31,10 +32,14 @@ public class Cxcy {
     }
 
     private static void init() {
+        try {
+            UIManager.setLookAndFeel(new SynthLookAndFeel());
+        } catch (UnsupportedLookAndFeelException ignored) {
+        }
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainWindow.setSize(1152, 648);
         mainWindow.setVisible(true);
-        mainWindow.setMinimumSize(new Dimension(800,600));
+        mainWindow.setMinimumSize(new Dimension(800, 600));
     }
 
     public static MainWindow getMainWindow() {

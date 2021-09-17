@@ -1,6 +1,8 @@
-package com.ardor3d.example.canvas;
+package cn.ussshenzhou.cxcy.jogl;
 
-import java.awt.Dimension;
+//public class test1 {}
+
+/*import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -37,10 +39,6 @@ import com.ardor3d.util.Timer;
 import com.ardor3d.util.resource.ResourceLocatorTool;
 import com.ardor3d.util.resource.SimpleResourceLocator;
 
-/**
- * This examples demonstrates how to render OpenGL (via JOGL) on a Swing canvas. FIXME: fix the thumbnail and the
- * description
- */
 public class test1 {
     static MouseCursor _cursor1;
     static MouseCursor _cursor2;
@@ -200,4 +198,4 @@ public class test1 {
             return exit;
         }
     }
-}
+}*/

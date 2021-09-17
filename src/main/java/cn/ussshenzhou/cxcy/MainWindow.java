@@ -29,7 +29,6 @@ public class MainWindow extends JFrame {
         rootContainer.add(mainViewPanel, BorderLayout.CENTER);
         mainMenuList.setSelectedIndex(0);
         mainViewPanel.setShow(0);
-
         Cxcy.dataThread.add(CommManager::init);
     }
 

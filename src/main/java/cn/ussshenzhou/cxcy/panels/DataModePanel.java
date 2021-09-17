@@ -5,7 +5,7 @@ import javax.swing.*;
 /**
  * @author USS_Shenzhou
  */
-public class DataModePanel extends JPanel implements LogViewer{
+public class DataModePanel extends JPanel implements LogViewer {
     JTextArea log = new JTextArea();
 
     @Override

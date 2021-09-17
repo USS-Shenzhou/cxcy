@@ -1,5 +1,6 @@
 package cn.ussshenzhou.cxcy.panels;
 
+import cn.ussshenzhou.cxcy.utils.LogManager;
 import cn.ussshenzhou.cxcy.widgets.BaudRatesComboBox;
 import cn.ussshenzhou.cxcy.widgets.CButton;
 import cn.ussshenzhou.cxcy.widgets.PortsComboBox;
@@ -12,7 +13,7 @@ import java.awt.event.MouseEvent;
 /**
  * @author USS_Shenzhou
  */
-public class SettingPanel extends JPanel implements LogViewer{
+public class SettingPanel extends JPanel implements LogViewer {
 
     JTextArea log = new JTextArea();
 
@@ -117,8 +118,8 @@ public class SettingPanel extends JPanel implements LogViewer{
             if (portBaudRate.isVisible()) {
                 portBaudRate.setBounds(textX, titleX + (titleHeight + spaceY) * 2, textWidth, textHeight);
             }
-            if (baudRatesComboBox.isVisible()){
-                baudRatesComboBox.setBounds(textX + textWidth + spaceX,titleX + (titleHeight + spaceY) * 2, textWidth, textHeight);
+            if (baudRatesComboBox.isVisible()) {
+                baudRatesComboBox.setBounds(textX + textWidth + spaceX, titleX + (titleHeight + spaceY) * 2, textWidth, textHeight);
             }
         }
     }

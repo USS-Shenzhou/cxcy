@@ -4,7 +4,6 @@ import cn.ussshenzhou.cxcy.panels.DataModePanel;
 import cn.ussshenzhou.cxcy.panels.MainViewPanel;
 import cn.ussshenzhou.cxcy.panels.ScanModePanel;
 import cn.ussshenzhou.cxcy.utils.LogManager;
-import javafx.util.converter.ByteStringConverter;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class DecodeManager {
                 strings.add(s.toString());
                 s = new StringBuilder();
             }
-            SwingUtilities.invokeLater(()->{
+            SwingUtilities.invokeLater(() -> {
                 //((ScanModePanel) MainViewPanel.getCurrentPanel()).getRadarPanel().setPointByStringArray(strings);
             });
             LogManager.LOGGER.info(strings.toString());

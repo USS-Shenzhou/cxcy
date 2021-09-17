@@ -148,7 +148,7 @@ public class RadarPanel extends JPanel {
             int height = parent.getHeight();
             if (target.isVisible()) {
                 int r = target.getRadius();
-                target.setBounds(pointX-2, pointY-2, r * 2, r * 2);
+                target.setBounds(pointX - 2, pointY - 2, r * 2, r * 2);
             }
         }
     }

@@ -18,7 +18,7 @@ public class MainMenuList extends JList<String> {
         this.setModel(listModel);
         this.setCellRenderer(new MainMenuListRenderer());
         this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        this.setPreferredSize(new Dimension(200,0));
+        this.setPreferredSize(new Dimension(200, 0));
         this.setBackground(new Color(0x151f26));
         this.setForeground(new Color(0x84c8f5));
         this.setSelectionBackground(new Color(0x184766));

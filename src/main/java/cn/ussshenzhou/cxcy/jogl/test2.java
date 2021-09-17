@@ -1,16 +1,18 @@
 /**
  * Copyright (c) 2008-2014 Ardor Labs, Inc.
- *
+ * <p>
  * This file is part of Ardor3D.
- *
+ * <p>
  * Ardor3D is free software: you can redistribute it and/or modify it
  * under the terms of its license which may be found in the accompanying
  * LICENSE file or at <http://www.ardor3d.com/LICENSE>.
  */
 
-package com.ardor3d.example.pipeline;
+package cn.ussshenzhou.cxcy.jogl;
 
-import java.net.URISyntaxException;
+//public class test2 {}
+
+/*import java.net.URISyntaxException;
 
 import com.ardor3d.example.ExampleBase;
 import com.ardor3d.example.Purpose;
@@ -20,28 +22,22 @@ import com.ardor3d.math.Vector3;
 import com.ardor3d.util.resource.ResourceLocatorTool;
 import com.ardor3d.util.resource.SimpleResourceLocator;
 
-/**
- * Simplest example of loading a Wavefront OBJ model.
- */
-@Purpose(htmlDescriptionKey = "com.ardor3d.example.pipeline.SimpleObjExample", //
-        thumbnailPath = "com/ardor3d/example/media/thumbnails/pipeline_SimpleObjExample.jpg", //
-        maxHeapMemory = 64)
-public class SimpleObjExample extends ExampleBase {
+public class test2 extends ExampleBase {
     public static void main(final String[] args) {
-        ExampleBase.start(SimpleObjExample.class);
+        ExampleBase.start(test2.class);
     }
 
     @Override
     protected void initExample() {
         _canvas.setTitle("Ardor3D - Simple Obj Example");
-        _canvas.getCanvasRenderer().getCamera().setLocation(new Vector3(0, 5, 20));
+        _canvas.getCanvasRenderer().getCamerao().setLocation(new Vector3(0, 5, 20));
 
         // Load the collada scene
         final long time = System.currentTimeMillis();
         final ObjImporter importer = new ObjImporter();
         try {
             importer.setTextureLocator(new SimpleResourceLocator(ResourceLocatorTool.getClassPathResource(
-                    SimpleObjExample.class, "com/ardor3d/example/media/models/obj/")));
+                    test2.class, "com/ardor3d/example/media/models/obj/")));
         } catch (final URISyntaxException ex) {
             ex.printStackTrace();
         }
@@ -50,4 +46,4 @@ public class SimpleObjExample extends ExampleBase {
 
         _root.attachChild(storage.getScene());
     }
-}
+}*/

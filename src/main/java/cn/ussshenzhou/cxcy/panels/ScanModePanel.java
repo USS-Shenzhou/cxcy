@@ -1,5 +1,6 @@
 package cn.ussshenzhou.cxcy.panels;
 
+import cn.ussshenzhou.cxcy.jogl.RadarPanel3d;
 import cn.ussshenzhou.cxcy.widgets.DepthGradientBar;
 import cn.ussshenzhou.cxcy.widgets.RadarPanel;
 import com.jogamp.opengl.awt.GLJPanel;
@@ -14,6 +15,7 @@ public class ScanModePanel extends JPanel implements LogViewer {
 
     JTextArea log = new JTextArea();
 
+    RadarPanel3d radarPanel3d = new RadarPanel3d();
     //RadarPanel radarPanel = new RadarPanel();
     //DepthGradientBar depthGradientBar = new DepthGradientBar();
     //JLabel depth1 = new JLabel("0");
@@ -29,6 +31,7 @@ public class ScanModePanel extends JPanel implements LogViewer {
 
         log.setEditable(false);
         this.add(log);
+        this.add(radarPanel3d);
         //this.add(depth1);
         //this.add(depth3);
         //this.add(depthGradientBar);
@@ -85,6 +88,9 @@ public class ScanModePanel extends JPanel implements LogViewer {
             //if (depth3.isVisible()) {
             //    depth3.setBounds((int) (width * 0.455), (int) (width * 0.41) - 30, 80, 40);
             //}
+            if (radarPanel3d.isVisible()) {
+                radarPanel3d.setBounds(0, 0, width, height);
+            }
         }
     }
 }

@@ -1,8 +1,5 @@
 package cn.ussshenzhou.cxcy.panels;
 
-import cn.ussshenzhou.cxcy.utils.LogManager;
-import com.sun.java.swing.plaf.windows.WindowsScrollPaneUI;
-
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollPaneUI;
 import java.awt.*;
@@ -24,7 +21,7 @@ public class MainViewPanel extends JPanel {
 
         this.add(scanModePanel, "scan");
         this.add(dataModePanel, "data");
-        this.add(settingPanel,"setting");
+        this.add(settingPanel, "setting");
 
     }
 
@@ -33,8 +30,8 @@ public class MainViewPanel extends JPanel {
         cardLayout.show(this, name);
     }
 
-    public void setShow(int i){
-        switch (i){
+    public void setShow(int i) {
+        switch (i) {
             case 0:
                 this.setShow("scan");
                 currentPanel = scanModePanel;
@@ -54,11 +51,11 @@ public class MainViewPanel extends JPanel {
         }
     }
 
-    public static JPanel getCurrentPanel(){
+    public static JPanel getCurrentPanel() {
         return currentPanel;
     }
 
-    public JPanel[] getAllPanels(){
-        return new JPanel[]{this.scanModePanel,this.dataModePanel,this.settingPanel};
+    public JPanel[] getAllPanels() {
+        return new JPanel[]{this.scanModePanel, this.dataModePanel, this.settingPanel};
     }
 }

@@ -2,7 +2,7 @@ package cn.ussshenzhou.cxcy.widgets;
 
 import cn.ussshenzhou.cxcy.Cxcy;
 import cn.ussshenzhou.cxcy.communicate.CommManager;
-import com.sun.java.swing.plaf.windows.WindowsComboBoxUI;
+import cn.ussshenzhou.cxcy.utils.LogManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,14 +14,13 @@ import java.awt.event.ItemListener;
  */
 public class BaudRatesComboBox extends JComboBox<Integer> {
     public BaudRatesComboBox() {
-        this.setUI(new WindowsComboBoxUI());
         this.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 13));
 
         this.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED){
-                    Cxcy.dataThread.add(()->{
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    Cxcy.dataThread.add(() -> {
                         CommManager.setBaudRate((Integer) e.getItem());
                     });
                 }

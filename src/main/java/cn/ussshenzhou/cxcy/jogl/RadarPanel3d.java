@@ -1,75 +1,135 @@
 package cn.ussshenzhou.cxcy.jogl;
 
-import com.jogamp.opengl.GL2;
-import com.jogamp.opengl.GLAutoDrawable;
-import com.jogamp.opengl.GLEventListener;
+
+import cn.ussshenzhou.cxcy.utils.LogManager;
+import com.ardor3d.extension.model.obj.ObjGeometryStore;
+import com.ardor3d.extension.model.obj.ObjImporter;
+import com.ardor3d.framework.DisplaySettings;
+import com.ardor3d.framework.jogl.CapsUtil;
+import com.ardor3d.framework.jogl.JoglCanvasRenderer;
+import com.ardor3d.framework.jogl.awt.JoglSwingCanvas;
+import com.ardor3d.intersection.PickResults;
+import com.ardor3d.math.Ray3;
+import com.ardor3d.renderer.ContextManager;
+import com.ardor3d.renderer.Renderer;
+import com.ardor3d.scenegraph.Node;
+import com.ardor3d.util.ContextGarbageCollector;
+import com.ardor3d.util.GameTaskQueueManager;
+import com.ardor3d.util.resource.RelativeResourceLocator;
+import com.ardor3d.util.resource.ResourceLocatorTool;
+import com.ardor3d.util.resource.SimpleResourceLocator;
+import com.ardor3d.util.resource.StringResourceSource;
 import com.jogamp.opengl.GLException;
 import com.jogamp.opengl.awt.GLJPanel;
-import com.jogamp.opengl.glu.GLU;
-import com.jogamp.opengl.GL2ES3;
 
 import java.awt.*;
-
-import static com.jogamp.opengl.GL.*;
-import static com.jogamp.opengl.GL2ES1.GL_PERSPECTIVE_CORRECTION_HINT;
-import static com.jogamp.opengl.fixedfunc.GLLightingFunc.GL_SMOOTH;
-import static com.jogamp.opengl.fixedfunc.GLMatrixFunc.GL_MODELVIEW;
-import static com.jogamp.opengl.fixedfunc.GLMatrixFunc.GL_PROJECTION;
+import java.net.URISyntaxException;
 
 /**
  * @author USS_Shenzhou
  */
-public class RadarPanel3d extends GLJPanel implements GLEventListener {
-    private GLU glu;
+public class RadarPanel3d extends GLJPanel {
+    CJoglCanvasRenderer cJoglCanvasRenderer = new CJoglCanvasRenderer();
+    DisplaySettings settings = new DisplaySettings(400, 300, 24, 0, 0, 16, 0, 0, false, false);
+    JoglSwingCanvas canvas = new JoglSwingCanvas(settings, cJoglCanvasRenderer);
 
     public RadarPanel3d() throws GLException {
-        this.addGLEventListener(this);
+        this.init();
+        this.add(canvas);
+    }
+
+    private void init() {
+        ((CScene) (canvas.getCanvasRenderer().getScene())).root.attachChild(this.loadObj());
+    }
+
+    private Node loadObj() {
+        final long time = System.currentTimeMillis();
+        final ObjImporter importer = new ObjImporter();
+        try {
+            importer.setModelLocator(new SimpleResourceLocator(ResourceLocatorTool.getClassPathResource(RadarPanel3d.class, "")));
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        //try {
+        //    importer.setTextureLocator(new SimpleResourceLocator(ResourceLocatorTool.getClassPathResource(
+        //            RadarPanel3d.class, "com/ardor3d/example/media/models/obj/")));
+        //} catch (final URISyntaxException ex) {
+        //    ex.printStackTrace();
+        //}
+        final ObjGeometryStore storage = importer.load("resources/model/test2.obj");
+        return storage.getScene();
+        //this.attachChild(storage.getScene());
+    }
+
+    private class CJoglCanvasRenderer extends JoglCanvasRenderer {
+        public CJoglCanvasRenderer() {
+            super(new CScene());
+        }
+
+        public CJoglCanvasRenderer(com.ardor3d.framework.Scene scene) {
+            super(scene);
+        }
+
+        public CJoglCanvasRenderer(com.ardor3d.framework.Scene scene, boolean useDebug, CapsUtil capsUtil, boolean contextDropAndReclaimOnDrawEnabled) {
+            super(scene, useDebug, capsUtil, contextDropAndReclaimOnDrawEnabled);
+        }
 
     }
 
-    private void canvas(){
+
+    private class CScene implements com.ardor3d.framework.Scene {
+        private final Node root = new Node("root");
+
+        public CScene() {
+        }
+
+        public Node getRoot() {
+            return this.root;
+        }
+
+        @Override
+        public boolean renderUnto(Renderer renderer) {
+            GameTaskQueueManager.getManager(ContextManager.getCurrentContext()).getQueue("render").execute(renderer);
+            ContextGarbageCollector.doRuntimeCleanup(renderer);
+            renderer.draw(this.root);
+            return true;
+        }
+
+        @Override
+        public PickResults doPick(Ray3 ray3) {
+            return null;
+        }
     }
 
+    private class Layout implements LayoutManager {
 
-    @Override
-    public void init(GLAutoDrawable drawable) {
-        GL2 gl = drawable.getGL().getGL2();
-        glu = new GLU();
-        gl.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-        gl.glClearDepth(1.0f);
-        gl.glEnable(GL_DEPTH_TEST);
-        gl.glDepthFunc(GL_LEQUAL);
-        gl.glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-        gl.glShadeModel(GL_SMOOTH);
-    }
+        @Override
+        public void addLayoutComponent(String name, Component comp) {
 
-    @Override
-    public void dispose(GLAutoDrawable drawable) {
+        }
 
-    }
+        @Override
+        public void removeLayoutComponent(Component comp) {
 
-    @Override
-    public void display(GLAutoDrawable drawable) {
-        GL2 gl = drawable.getGL().getGL2();
-        gl.glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        gl.glLoadIdentity();
-        //
-        gl.glLoadIdentity();
-        gl.glTranslatef(1.6f, 0.0f, -7.0f);
+        }
 
-    }
+        @Override
+        public Dimension preferredLayoutSize(Container parent) {
+            return null;
+        }
 
-    @Override
-    public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
-        GL2 gl = drawable.getGL().getGL2();
+        @Override
+        public Dimension minimumLayoutSize(Container parent) {
+            return null;
+        }
 
-        if (height == 0) height = 1;
-        float aspect = (float) width / height;
-        gl.glViewport(0, 0, width, height);
-        gl.glMatrixMode(GL_PROJECTION);
-        gl.glLoadIdentity();
-        glu.gluPerspective(45.0, aspect, 0.1, 100.0);
-        gl.glMatrixMode(GL_MODELVIEW);
-        gl.glLoadIdentity();
+        @Override
+        public void layoutContainer(Container parent) {
+            int width = parent.getWidth();
+            int height = parent.getHeight();
+            if (canvas.isVisible()) {
+                canvas.setBounds(0, 0, width, height);
+            }
+        }
     }
 }
